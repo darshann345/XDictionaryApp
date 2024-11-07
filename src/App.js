@@ -13,18 +13,16 @@ const App = () => {
 
   const handleSearch = () => {
     const word = searchTerm.trim().toLowerCase();
-    
-    // Handle empty input and reset messages
     if (!word) {
       setDefinition("");
       setErrorMessage("Word not found in the dictionary.");
       return;
     }
-    
+
     const foundWord = dictionary.find(
       (entry) => entry.word.toLowerCase() === word
     );
-    
+
     if (foundWord) {
       setDefinition(foundWord.meaning);
       setErrorMessage("");
@@ -45,9 +43,7 @@ const App = () => {
       />
       <button onClick={handleSearch}>Search</button>
       <div>
-        <p>
-          <strong>Definition:</strong>
-        </p>
+        <p><strong>Definition:</strong></p>
         <p>{definition || errorMessage}</p>
       </div>
     </div>
