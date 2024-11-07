@@ -42,10 +42,10 @@ const App = () => {
         placeholder="Search for a word"
       />
       <button onClick={handleSearch}>Search</button>
-      <div>
-        <p><strong>Definition:</strong></p>
-        <p>{definition || errorMessage || "Please enter a word to search."}</p>
-      </div>
+      <br/>
+      <p><strong>Definition:</strong></p>
+      <p>{definition || errorMessage || "Please enter a word to search."}</p>
+      
     </div>
   );
 };
