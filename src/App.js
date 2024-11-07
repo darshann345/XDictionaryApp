@@ -44,7 +44,7 @@ const App = () => {
       <button onClick={handleSearch}>Search</button>
       <div>
         <p><strong>Definition:</strong></p>
-        <p>{definition || errorMessage}</p>
+        <p>{definition || errorMessage || "Please enter a word to search."}</p>
       </div>
     </div>
   );
