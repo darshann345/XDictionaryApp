@@ -13,21 +13,24 @@ const App = () => {
 
   const handleSearch = () => {
     const word = searchTerm.trim().toLowerCase();
-    console.log(word)
-    if (word) {
-      const foundWord = dictionary.find(
-        (entry) => entry.word.toLowerCase() === word
-      );
-      if (foundWord) {
-        setDefinition(foundWord.meaning);
-        setErrorMessage("");
-      } else {
-        setDefinition("");
-        setErrorMessage("Word not found in the dictionary.");
-      }
+    
+    // Handle empty input and reset messages
+    if (!word) {
+      setDefinition("");
+      setErrorMessage("Word not found in the dictionary.");
+      return;
+    }
+    
+    const foundWord = dictionary.find(
+      (entry) => entry.word.toLowerCase() === word
+    );
+    
+    if (foundWord) {
+      setDefinition(foundWord.meaning);
+      setErrorMessage("");
     } else {
       setDefinition("");
-      setErrorMessage("");
+      setErrorMessage("Word not found in the dictionary.");
     }
   };
 
