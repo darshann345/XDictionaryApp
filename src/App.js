@@ -11,6 +11,7 @@ const App = () => {
     { word: "State", meaning: "An object that stores data for a component." }
   ];
 
+  
   const handleSearch = () => {
     const word = searchTerm.trim().toLowerCase();
     if (!word) {
