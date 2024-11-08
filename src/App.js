@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 
-// Sample dictionary for testing purposes
 const dictionary = {
-  React: "A JavaScript library for building user interfaces.",
-  Component: "A reusable building block in React.",
-  JavaScript: "A programming language commonly used for web development.",
+  react: "A JavaScript library for building user interfaces.",
+  component: "A reusable building block in React.",
+  javascript: "A programming language commonly used for web development.",
 };
 
 const DictionaryApp = () => {
@@ -12,20 +11,14 @@ const DictionaryApp = () => {
   const [definition, setDefinition] = useState("");
 
   const handleSearch = () => {
-    // Check if the word exists in the dictionary, ignoring case
-    const result = dictionary[searchTerm.trim()] 
-      || dictionary[searchTerm.trim().toLowerCase()];
-
-    if (result) {
-      setDefinition(result);
-    } else {
-      setDefinition("Word not found in the dictionary.");
-    }
+    const searchKey = searchTerm.trim().toLowerCase(); 
+    const result = dictionary[searchKey] || "Word not found in the dictionary.";
+    setDefinition(result); 
   };
 
   const handleInputChange = (e) => {
-    setSearchTerm(e.target.value);
-    setDefinition(""); // Clear the definition on new input
+    setSearchTerm(e.target.value); 
+    setDefinition(""); 
   };
 
   return (
