@@ -1,53 +1,49 @@
 import React, { useState } from "react";
 
-const App = () => {
+// Sample dictionary for testing purposes
+const dictionary = {
+  React: "A JavaScript library for building user interfaces.",
+  Component: "A reusable building block in React.",
+  JavaScript: "A programming language commonly used for web development.",
+};
+
+const DictionaryApp = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [definition, setDefinition] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const dictionary = [
-    { word: "React", meaning: "A JavaScript library for building user interfaces." },
-    { word: "Component", meaning: "A reusable building block in React." },
-    { word: "State", meaning: "An object that stores data for a component." }
-  ];
 
   const handleSearch = () => {
-    const word = searchTerm.trim().toLowerCase();
-    if (!word) {
-      setDefinition("");
-      setErrorMessage("Word not found in the dictionary.");
-      return;
-    }
+    // Check if the word exists in the dictionary, ignoring case
+    const result = dictionary[searchTerm.trim()] 
+      || dictionary[searchTerm.trim().toLowerCase()];
 
-    const foundWord = dictionary.find(
-      (entry) => entry.word.toLowerCase() === word
-    );
-
-    if (foundWord) {
-      setDefinition(foundWord.meaning);
-      setErrorMessage("");
+    if (result) {
+      setDefinition(result);
     } else {
-      setDefinition("");
-      setErrorMessage("Word not found in the dictionary.");
+      setDefinition("Word not found in the dictionary.");
     }
   };
 
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value);
+    setDefinition(""); // Clear the definition on new input
+  };
+
   return (
-    <div>
+    <div style={{ textAlign: "center", marginTop: "20px" }}>
       <h1>Dictionary App</h1>
       <input
         type="text"
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search for a word"
+        onChange={handleInputChange}
+        placeholder="Enter a word"
       />
       <button onClick={handleSearch}>Search</button>
-      <br/>
-      <p><strong>Definition:</strong></p>
-      <p>{definition || errorMessage || "Please enter a word to search."}</p>
-      
+      <div>
+        <h3>Definition:</h3>
+        <p>{definition}</p>
+      </div>
     </div>
   );
 };
 
-export default App;
+export default DictionaryApp;
