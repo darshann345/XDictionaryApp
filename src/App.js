@@ -11,7 +11,7 @@ const App = () => {
 
   const handleSearch = () => {
     if (searchWord.trim() === "") {
-      setResult('');
+      setResult('Word not found in the dictionary');
       return;
     }
     const foundWord = dictionary.find(
@@ -20,7 +20,7 @@ const App = () => {
     if (foundWord) {
       setResult(foundWord.meaning);
     } else {
-      setResult("Word not found in dictionary");
+      setResult("Word not found in the dictionary");
     }
   };
 
@@ -36,7 +36,7 @@ const App = () => {
         />
         <button onClick={handleSearch}>Search</button>
 
-        {result !== "" && <h5>Definition :</h5>}
+        <h5>Definition :</h5>
         {result && <p>{result}</p>}
       </div>
     </>
