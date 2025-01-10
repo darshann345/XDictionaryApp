@@ -1,46 +1,42 @@
 import React, { useState } from "react";
 
-const App = () => {
-  const [searchWord, setSearchWord] = useState("");
-  const [result, setResult] = useState("");
-  const [dictionary] = useState([
-    { word: "React", meaning: "A JavaScript library for building user interfaces." },
-    { word: "Component", meaning: "A reusable building block in React." },
-    { word: "State", meaning: "An object that stores data for a component." },
-  ]);
+const dictionary = {
+  react: "A JavaScript library for building user interfaces.",
+  component: "A reusable building block in React.",
+  javascript: "A programming language commonly used for web development.",
+};
+
+const DictionaryApp = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [definition, setDefinition] = useState("");
 
   const handleSearch = () => {
-    if (searchWord.trim() === "") {
-      setResult('Word not found in the dictionary');
-      return;
-    }
-    const foundWord = dictionary.find(
-      (item) => item.word.toLowerCase() === searchWord.toLowerCase()
-    );
-    if (foundWord) {
-      setResult(foundWord.meaning);
-    } else {
-      setResult("Word not found in the dictionary");
-    }
+    const searchKey = searchTerm.trim().toLowerCase(); 
+    const result = dictionary[searchKey] || "Word not found in the dictionary.";
+    setDefinition(result); 
+  };
+
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value); 
+    setDefinition(""); 
   };
 
   return (
-    <>
+    <div style={{ textAlign: "center", marginTop: "20px" }}>
+      <h1>Dictionary App</h1>
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={handleInputChange}
+        placeholder="Enter a word"
+      />
+      <button onClick={handleSearch}>Search</button>
       <div>
-        <h1>Dictionary App</h1>
-        <input
-          type="text"
-          value={searchWord}
-          placeholder="Search for a word"
-          onChange={(e) => setSearchWord(e.target.value)}
-        />
-        <button onClick={handleSearch}>Search</button>
-
-        <h5>Definition :</h5>
-        {result && <p>{result}</p>}
+        <h3>Definition:</h3>
+        <p>{definition}</p>
       </div>
-    </>
+    </div>
   );
 };
 
-export default App;
+export default DictionaryApp;
