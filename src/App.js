@@ -28,6 +28,7 @@ const App = () =>{
             <div>
                 <h1>Dictionary  App</h1>
                 <input
+                    type="text"
                     value = {searchWord}
                     placeholder="Search for a word"
                     onChange = {(e)=>setSearchWord(e.target.value)}
